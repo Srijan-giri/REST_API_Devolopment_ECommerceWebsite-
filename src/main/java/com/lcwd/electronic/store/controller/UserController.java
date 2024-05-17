@@ -1,9 +1,12 @@
 package com.lcwd.electronic.store.controller;
 
 import com.lcwd.electronic.store.dtos.ApiResponseMessage;
+import com.lcwd.electronic.store.dtos.PageableResponse;
 import com.lcwd.electronic.store.dtos.UserDto;
 import com.lcwd.electronic.store.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +21,10 @@ public class UserController {
     private UserService userService;
 
 
-
     // create
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto)
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto)
     {
         UserDto userDto1 = userService.createUser(userDto);
 
@@ -33,7 +35,7 @@ public class UserController {
     // update
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,
                                               @PathVariable("userId")String id)
     {
         UserDto updateUser = userService.updateUser(userDto,id);
@@ -61,9 +63,14 @@ public class UserController {
     // get all
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> getAllUsers()
+    public ResponseEntity<PageableResponse<UserDto>> getAllUsers(
+            @RequestParam(value="pageNumber",defaultValue = "0" , required = false) int pageNumber,
+            @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
+            @RequestParam(value="sortBy",defaultValue = "name",required = false) String sortBy,
+            @RequestParam(value="sortDir",defaultValue = "asc",required = false) String  sortDir
+    )
     {
-        List<UserDto> allUsers = userService.getAllUsers();
+        PageableResponse<UserDto> allUsers = userService.getAllUsers(pageNumber, pageSize, sortBy, sortDir);
 
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
