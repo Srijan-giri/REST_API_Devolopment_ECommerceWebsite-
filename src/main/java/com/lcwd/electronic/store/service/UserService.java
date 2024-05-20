@@ -3,6 +3,7 @@ package com.lcwd.electronic.store.service;
 import com.lcwd.electronic.store.dtos.PageableResponse;
 import com.lcwd.electronic.store.dtos.UserDto;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface UserService {
@@ -14,10 +15,9 @@ public interface UserService {
     // update
 
     UserDto updateUser(UserDto userDto,String userId);
-
     // delete
 
-    void deleteUser(String userId);
+    void deleteUser(String userId) throws IOException;
 
     // get all users
 
