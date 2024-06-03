@@ -1,11 +1,16 @@
 package com.lcwd.electronic.store.dtos;
 
+import com.lcwd.electronic.store.entities.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -26,4 +31,6 @@ public class CategoryDto {
 
     @NotBlank(message = "cover image is required !!")
     private String coverImage;
+
+//   private List<ProductDto> product = new ArrayList<>();
 }

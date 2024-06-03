@@ -153,4 +153,7 @@ public class ProductController {
         StreamUtils.copy(resource,response.getOutputStream());
     }
 
+
+
+
 }

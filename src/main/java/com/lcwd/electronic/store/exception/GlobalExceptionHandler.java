@@ -70,8 +70,8 @@ public class GlobalExceptionHandler {
 
 
     // handle bad api request
-    @ExceptionHandler(BadApiRequest.class)
-    public ResponseEntity<ApiResponseMessage> handleBadApiRequest(BadApiRequest ex)
+    @ExceptionHandler(BadApiRequestException.class)
+    public ResponseEntity<ApiResponseMessage> handleBadApiRequest(BadApiRequestException ex)
     {
 
         logger.info("Bad Api Request");

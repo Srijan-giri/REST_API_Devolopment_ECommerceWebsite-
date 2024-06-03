@@ -1,5 +1,6 @@
 package com.lcwd.electronic.store.dtos;
 
+import com.lcwd.electronic.store.entities.Category;
 import com.lcwd.electronic.store.validate.ImageNameValid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -38,4 +39,6 @@ public class ProductDto {
 
     @ImageNameValid
     private String productImageName;
+
+    private CategoryDto category;
 }
